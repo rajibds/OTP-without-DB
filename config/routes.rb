@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'otp#index'
+  root 'otp#generate'
 
-  resources :otp, only: :index
+  resources :otp, only: %i(generate verify)
 end
