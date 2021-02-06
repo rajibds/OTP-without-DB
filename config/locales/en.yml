@@ -5,3 +5,6 @@
 en:
   otp_without_db: OTP Without DB
   email: Email
+  verification: Verification
+  request_otp: Request OTP
+  verify_otp: Verify OTP

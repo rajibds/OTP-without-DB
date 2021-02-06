@@ -1,18 +1,25 @@
 class OtpsController < ApplicationController
+  def index; end
+
   def generate
-    otp_with_encrypted_hash = OTPWithoutDB::GenerateOTPWithEncryptedHash.call(email: params[:email])
-    @otp = otp_with_encrypted_hash[:otp]
-    @encrypted_hash = otp_with_encrypted_hash[:encrypted_hash]
+    encrypted_hash = ::OTPManagement::GenerateOTPWithEncryptedHash.call(email: params[:email])
+    render json: { encrypted_hash: encrypted_hash }
   end
 
   def verify
-    verification_status_with_message = OTPWithoutDB::VerifyOTPUsingEncryptedHash.call(
+    verification_status_with_message = OTPManagement::VerifyOTPUsingEncryptedHash.call(
       email: params[:email],
       otp: params[:otp],
       encrypted_hash: params[:encrypted_hash],
     )
 
-    @status = verification_status_with_message[:status]
-    @message = verification_status_with_message[:message]
+    status = verification_status_with_message[:status]
+    message = verification_status_with_message[:message]
+
+    if status == :success
+      render json: { message: message }
+    else
+      render json: { message: message }, status: :unprocessable_entity
+    end
   end
 end

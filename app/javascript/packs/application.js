@@ -9,6 +9,6 @@ import '../shared/i18n-js';
 
 import '../stylesheets/index.scss';
 
-import Game from '../components/Game';
+import OTP from '../components/OTP';
 
-WebpackerReact.setup({ Game });
+WebpackerReact.setup({ OTP });

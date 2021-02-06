@@ -1,4 +1,4 @@
-module OTPWithoutDB
+module OTPManagement
   def self.encrypted_hash(email:, otp:, expiry_time:)
     key = Rails.application.secret_key_base
     data = "#{email}#{otp}#{expiry_time}"
@@ -21,14 +21,11 @@ module OTPWithoutDB
     end
 
     def call
-      {
+      OTPManagement.encrypted_hash(
+        email: @email,
         otp: otp,
-        encrypted_hash: OTPWithoutDB.encrypted_hash(
-          email: @email,
-          otp: otp,
-          expiry_time: @expiry_time,
-        ),
-      }
+        expiry_time: @expiry_time,
+      )
     end
 
     def otp
@@ -51,7 +48,7 @@ module OTPWithoutDB
       encrypted_hash_from_request, expiry_time_from_request = @encrypted_hash.split('.')
       return response(:failure, 'OTP expired') if expiry_time_from_request > Time.now.utc
 
-      new_encrypted_hash = OTPWithoutDB.encrypted_hash(
+      new_encrypted_hash = OTPManagement.encrypted_hash(
         email: @email,
         otp: @otp,
         expiry_time: expiry_time_from_request,
