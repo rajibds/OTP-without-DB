@@ -9,8 +9,9 @@ function url(template, params) {
 }
 
 const routes = {
-  games: {
-    index: params => url('/games{.format}{?q}', params),
+  otps: {
+    generate: params => url('/otps/generate{.format}{?email}', params),
+    verify: params => url('/otps/verify{.format}{?email,otp,encrypted_hash}', params),
   },
 };
 
