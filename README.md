@@ -1,4 +1,4 @@
-# Bowling Game Score Calculator
+# OTP Without DB
 
 This is a sample app to generate OTP without using DB. The email is provided
 in the frontend.
@@ -10,7 +10,7 @@ the local machine, we have to install both `Rails` and `Node`.
 
 - Clone the repository
   ```bash
-  git@github.com:rajibds/bowling-game-calculator.git
+  git@github.com:rajibds/OTP-without-DB.git
   ```
 - Homebrew:
   ```bash
