@@ -3,6 +3,13 @@
 # than English, add the necessary files in this directory.
 
 en:
-  bowling_game_calculator: Bowling Game Calculator
-  calculate: Calculate
-  input_string: Input String
+  otp_without_db: OTP Without DB
+  email: Email
+  verification: Verification
+  request_otp: Request OTP
+  verify_otp: Verify OTP
+  layouts:
+    mailer:
+      otp_mailer:
+        statement: Your One Time Password(OTP) is %{otp}
+        subject: One Time Password(OTP)
