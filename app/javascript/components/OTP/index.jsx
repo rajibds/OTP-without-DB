@@ -1,54 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from '../../containers/store';
+import GenerateOTP from './Generate';
+import VerifyOTP from './Verify';
 
-import httpClient from '../../shared/httpClient';
-import routes from '../../routes';
-
-const OTP = () => {
-  const [inputString, setInputString] = useState('');
-
-  const handleFormSubmission = async event => {
-    event.preventDefault();
-
-    const { data } = await httpClient.get(routes.otps.generate({ email: inputString }));
-    console.log({ data });
-  };
-
-  return (
-    <form onSubmit={event => handleFormSubmission(event)}>
-      <div className="form-row">
-        <div className="col">
-          <label htmlFor="inputString">{I18n.t('email')}</label>
-          <input
-            className="form-control"
-            id="inputString"
-            onChange={event => setInputString(event.target.value)}
-          />
+const OTP = () => (
+  <Provider store={store}>
+    <React.StrictMode>
+      <div className="otp row">
+        <div className="col-sm">
+          <GenerateOTP />
         </div>
-        <div className="col">
-          <label htmlFor="inputString">{I18n.t('verification')}</label>
-          <input
-            className="form-control"
-            id="inputString"
-            onChange={event => setInputString(event.target.value)}
-          />
+        <div className="col-sm">
+          <VerifyOTP />
         </div>
       </div>
-
-      <div className="form-row">
-        <div className="col">
-          <button type="submit" className="btn btn-primary btn-sm">
-            {I18n.t('request_otp')}
-          </button>
-        </div>
-
-        <div className="col">
-          <button type="submit" className="btn btn-primary btn-sm">
-            {I18n.t('verify_otp')}
-          </button>
-        </div>
-      </div>
-    </form>
-  );
-};
+    </React.StrictMode>
+  </Provider>
+);
 
 export default OTP;

@@ -2,8 +2,11 @@ class OtpsController < ApplicationController
   def index; end
 
   def generate
+    email = params[:email].presence
+    return render json: { message: 'Please provide an Email' }, status: :unprocessable_entity unless email
+
     encrypted_hash = ::OTPManagement::GenerateOTPWithEncryptedHash.call(email: params[:email])
-    render json: { encrypted_hash: encrypted_hash }
+    render json: { email: email, encrypted_hash: encrypted_hash }
   end
 
   def verify
