@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module ELearningSystem
+module OTPWithoutDB
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
@@ -23,7 +23,7 @@ module ELearningSystem
       subdomain: :subdomain,
     }
     # Semantic Logger defaults
-    config.semantic_logger.application = 'ELearningSystem'
+    config.semantic_logger.application = 'OTPWithoutDB'
     config.rails_semantic_logger.format = :json
     config.rails_semantic_logger.add_file_appender = false
 

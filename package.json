@@ -1,5 +1,5 @@
 {
-  "name": "e_learning_system",
+  "name": "otp_without_db",
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.10.4",
