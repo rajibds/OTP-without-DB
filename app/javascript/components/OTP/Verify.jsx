@@ -21,8 +21,6 @@ const VerifyOTP = ({ user }) => {
           encrypted_hash: user.encryptedHash,
         }),
       );
-
-      console.log({ data });
       setSuccessMessage(data.message);
     } catch (error) {
       setErrorMessage(error.response.data.message);
