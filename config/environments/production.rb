@@ -116,4 +116,15 @@ Rails.application.configure do
     level: config.log_level,
     formatter: config.rails_semantic_logger.format,
   )
+
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'gmail.com',
+    user_name: Rails.application.credentials.dig(:gmail, :user_name),
+    password: Rails.application.credentials.dig(:gmail, :password),
+    authentication: 'plain',
+    enable_starttls_auto: true,
+  }
 end

@@ -35,6 +35,7 @@ const VerifyOTP = ({ user }) => {
           className="form-control"
           id="inputString"
           onChange={event => setInputString(event.target.value)}
+          disabled={!user?.email}
         />
         {successMessage && (
           <div className="alert alert-success py-1" role="alert">

@@ -65,4 +65,6 @@ Rails.application.configure do
     file_name: "log/#{Rails.env}.log",
     formatter: :color,
   )
+
+  config.action_mailer.delivery_method = :letter_opener
 end

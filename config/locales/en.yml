@@ -8,3 +8,8 @@ en:
   verification: Verification
   request_otp: Request OTP
   verify_otp: Verify OTP
+  layouts:
+    mailer:
+      otp_mailer:
+        statement: Your One Time Password(OTP) is %{otp}
+        subject: One Time Password(OTP)
