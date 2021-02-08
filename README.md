@@ -1,6 +1,6 @@
 # Bowling Game Score Calculator
 
-This is a sample app to calculate total score of a bowling game. The bowling sequence is given as a sting
+This is a sample app to generate OTP without using DB. The email is provided
 in the frontend.
 
 The backend of this project is developed in Rails and the Frontend part in React. To run this project in
