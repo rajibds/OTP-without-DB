@@ -8,14 +8,18 @@ import routes from '../../routes';
 
 const GenerateOTP = ({ populateUser }) => {
   const [inputString, setInputString] = useState('');
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleFormSubmission = async event => {
     event.preventDefault();
+    setSuccessMessage('');
+    setErrorMessage('');
 
     try {
       const { data } = await httpClient.get(routes.otps.generate({ email: inputString }));
       populateUser(data);
+      setSuccessMessage('Please check your email for OTP');
     } catch (error) {
       setErrorMessage(error.response.data.message);
     }
@@ -30,7 +34,11 @@ const GenerateOTP = ({ populateUser }) => {
           id="inputString"
           onChange={event => setInputString(event.target.value)}
         />
-
+        {successMessage && (
+          <div className="alert alert-success py-1" role="alert">
+            {successMessage}
+          </div>
+        )}
         {errorMessage && (
           <div className="alert alert-danger py-1" role="alert">
             {errorMessage}
