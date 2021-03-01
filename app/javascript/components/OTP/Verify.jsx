@@ -12,6 +12,8 @@ const VerifyOTP = ({ user }) => {
 
   const handleFormSubmission = async event => {
     event.preventDefault();
+    setSuccessMessage('');
+    setErrorMessage('');
 
     try {
       const { data } = await httpClient.get(
