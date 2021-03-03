@@ -67,10 +67,10 @@ module OTPManagement
     end
 
     def response(status, message)
-        {
-          status: status,
-          message: message,
-        }
+      {
+        status: status,
+        message: message,
+      }
     end
   end
 end
