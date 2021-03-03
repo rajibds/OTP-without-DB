@@ -9,7 +9,7 @@ const email = 'test.email';
 const otpGenerateResponse = { email, encrypted_hash: 'abcxyz' };
 const otpSentText = 'Please check your email for OTP';
 
-const props = { store: mockStore({ email }), populateUser: jest.fn() };
+const props = { store: mockStore({ user: { email } }), populateUser: jest.fn() };
 const wrapper = mount(<Generate {...props} />);
 
 describe('Generate', () => {
