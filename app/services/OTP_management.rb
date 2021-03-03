@@ -51,7 +51,9 @@ module OTPManagement
 
     def call
       _, expiry_time_from_request = @encrypted_hash.split('.')
-      return response(:failure, 'OTP expired') if Time.now.utc > expiry_time_from_request
+      if Time.now.utc > expiry_time_from_request
+        return response(:failure, 'OTP expired')
+      end
 
       new_encrypted_hash = OTPManagement.encrypted_hash(
         email: @email,
