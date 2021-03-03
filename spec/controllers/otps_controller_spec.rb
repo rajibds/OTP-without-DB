@@ -24,8 +24,6 @@ RSpec.describe OtpsController, type: :controller do
     end
 
     it 'returns the list of courses in JSON' do
-      puts 'test code'
-      puts Rails.application.credentials.dig(:gmail, :user_name)
       get :generate, params: { email: email, format: :json }
 
       expect(JSON.parse(response.body, symbolize_names: true)).to eq expected_response

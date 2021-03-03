@@ -8,7 +8,8 @@ class OtpsController < ApplicationController
     otp_with_encrypted_hash = ::OTPManagement::GenerateOTPWithEncryptedHash.call(email: params[:email])
     otp = otp_with_encrypted_hash[:otp]
     encrypted_hash = otp_with_encrypted_hash[:encrypted_hash]
-
+    puts 'test code'
+    puts Rails.application.credentials.dig(:gmail, :user_name)
     OTPMailer.notify(email: email, otp: otp).deliver_now
 
     render json: { email: email, encrypted_hash: encrypted_hash }
