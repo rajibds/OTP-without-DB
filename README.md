@@ -1,4 +1,5 @@
 # OTP Without DB
+otp-without-db.herokuapp.com/
 
 This is a sample app to generate OTP without using DB. The email is provided
 in the frontend.
