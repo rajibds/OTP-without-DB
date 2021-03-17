@@ -5,12 +5,16 @@ class OtpsController < ApplicationController
     email = params[:email].presence
     return render json: { message: 'Please provide an Email' }, status: :unprocessable_entity unless email
 
-    otp_with_encrypted_hash = ::OTPManagement::GenerateOTPWithEncryptedHash.call(email: params[:email])
-    otp = otp_with_encrypted_hash[:otp]
-    encrypted_hash = otp_with_encrypted_hash[:encrypted_hash]
-    OTPMailer.notify(email: email, otp: otp).deliver_now
+    begin
+      otp_with_encrypted_hash = ::OTPManagement::GenerateOTPWithEncryptedHash.call(email: params[:email])
+      otp = otp_with_encrypted_hash[:otp]
+      encrypted_hash = otp_with_encrypted_hash[:encrypted_hash]
+      OTPMailer.notify(email: email, otp: otp).deliver_now
 
-    render json: { email: email, encrypted_hash: encrypted_hash }
+      render json: { email: email, encrypted_hash: encrypted_hash }
+    rescue StandardError
+      render json: { message: 'Something Wrong' }, status: :unprocessable_entity
+    end
   end
 
   def verify
